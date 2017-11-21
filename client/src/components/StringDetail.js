@@ -94,9 +94,6 @@ class StringDetail extends Component {
               <input type='submit' value='Submit'></input>
             </form>           
           </div>}
-          <Link to={`/strings/`}>
-            Home
-          </Link>
         </div>
       );
     } else {

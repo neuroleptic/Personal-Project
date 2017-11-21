@@ -11,15 +11,6 @@ class StringsList extends Component {
   render() {
     return (
       <div>
-        <Link to={'/login'}>
-          Log In 
-        </Link>
-        <Link to={'/logout'}>
-          Log Out
-        </Link>
-        <Link to={'/register'}>
-          Register
-        </Link>
         {this.props.authenticated && <Link to={`/strings/new`}>
             Add a string
           </Link>}
