@@ -8,7 +8,7 @@ import {
 export default (auth = {}, action) => {
   switch (action.type) {
     case USER_AUTHENTICATED:
-      return { ...auth, authenticated: true, username: action.payload.data.username };
+      return { ...auth, authenticated: true, username: action.payload.data.username, error: '' };
     case USER_UNAUTHENTICATED:
       return { ...auth, authenticated: false, username: '' };
     case AUTHENTICATION_ERROR:
