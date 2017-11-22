@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getString, deleteString, deleteReview } from '../actions';
 import { Link } from 'react-router-dom';
+import StarRatings from 'react-star-ratings';
 
 class StringDetail extends Component {
   constructor() {
     super();
-
     this.handleDeleteString = this.handleDeleteString.bind(this);
-    
   }
 
   componentDidMount() {
@@ -40,6 +39,14 @@ class StringDetail extends Component {
           <p>Outer material: {this.props.selectedString.outerMaterial}</p>
           <p>Tonal traits: {this.props.selectedString.tonalTraits}</p>
 
+          <p>Average rating: <StarRatings
+                      rating={ this.props.selectedString.rating }
+                      isSelectable={ false }
+                      isAggregateRating={ true }
+                      numOfStars={ 5 }
+                    />
+                </p> 
+
           {this.props.username === this.props.selectedString.author.username && <Link to={`/strings/${this.props.selectedString._id}/edit`}>
             Edit String
           </Link>}
@@ -53,7 +60,14 @@ class StringDetail extends Component {
           {this.props.selectedString.reviews.map((review, i) => {
             return (
               <div key={i}>
-                <p> {review.text } </p>      
+                <p> {review.text } </p>
+                <p>Rating: <StarRatings
+                    rating={ review.rating }
+                    isSelectable={ false }
+                    isAggregateRating={ false }
+                    numOfStars={ 5 }
+                  /> 
+                </p>      
                 <p> By: {review.author.username } </p>
                 {this.props.username === review.author.username&& <div>
                     <Link to={`/strings/${this.props.selectedString._id}/reviews/${review._id}`}>

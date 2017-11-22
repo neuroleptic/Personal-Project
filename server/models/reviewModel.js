@@ -5,6 +5,10 @@ const ReviewSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  rating: {
+    type: Number,
+    required: true
+  },
   _parent: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'String'

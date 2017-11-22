@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editReview } from '../actions';
+import StarRatings from 'react-star-ratings';
 
 class EditReview extends Component {
   constructor() {
     super();
 
     this.state = {
-      text: ''
+      text: '',
+      rating: 3
     };
 
     this.handleChangeText = this.handleChangeText.bind(this);
@@ -19,6 +21,12 @@ class EditReview extends Component {
       text: e.target.value
     });
   };
+
+  changeRating = ( newRating ) => { 
+    this.setState({
+      rating: newRating
+    });
+  }
   
   handleSubmit(event) {
     event.preventDefault();
@@ -32,6 +40,13 @@ class EditReview extends Component {
         <div>
           <form onSubmit={this.handleSubmit}>
             <input value={this.state.text} onChange={this.handleChangeText} type='text' placeholder="Enter review"></input>
+            <StarRatings
+              rating={this.state.rating}
+              isSelectable={true}
+              isAggregateRating={false}
+              changeRating={this.changeRating}
+              numOfStars={ 5 }
+            />
             <input type='submit' value='Submit'></input>
           </form>           
         </div>

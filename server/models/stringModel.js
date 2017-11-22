@@ -21,6 +21,9 @@ const StringSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  rating: {
+    type: Number
+  },
   outerMaterial: {
     type: String,
     required: true

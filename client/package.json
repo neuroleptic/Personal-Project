@@ -4,12 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "rc-rate": "^2.3.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
+    "react-star-ratings": "^1.1.1",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"

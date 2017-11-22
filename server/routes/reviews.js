@@ -6,9 +6,9 @@ const middleware = require('../middleware');
 
 router.post('/', middleware.isLoggedIn, (req, res) => {
   const { id } = req.params;
-  const { text } = req.body;
+  const { text, rating } = req.body;
   const author = req.user;
-  const newReview = new Review({ text, author, _parent: id});
+  const newReview = new Review({ text, rating, author, _parent: id});
   newReview.save()
     .catch((error) => {
       res.json({ error });
@@ -16,7 +16,19 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
   StringModel.findByIdAndUpdate(id, { $push: { reviews: newReview._id }})
     .exec()
     .then((updatedString) => {
-      res.json(updatedString)
+      StringModel.findById(id)
+        .populate('reviews')
+        .exec()
+        .then((string) => {
+          let sum = 0;
+          for(let i = 0; i < string.reviews.length; i++){
+            sum += string.reviews[i].rating;
+          }
+          const average = sum / string.reviews.length;
+          string.rating = average;
+          string.save();
+          res.json(string);
+        })
     })
     .catch((error) => {
       res.json({ error });
@@ -24,12 +36,24 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
 });
 
 router.put('/:reviewId', middleware.checkUserReview, (req, res) => {
-  const id = req.params.reviewId;
-  const { text } = req.body;
-  Review.findByIdAndUpdate(id, {$set: {text}}, {new:true})
+  const { id, reviewId } = req.params;
+  const { text, rating  } = req.body;
+  Review.findByIdAndUpdate(reviewId, {$set: {text, rating}}, {new:true})
     .exec()
-    .then((updatedReview) => {
-      res.json(updatedReview)
+    .then((updatedReview) => {          
+      StringModel.findById(id)
+      .populate('reviews')
+      .exec()
+      .then((string) => {
+        let sum = 0;
+        for(let i = 0; i < string.reviews.length; i++){
+          sum += string.reviews[i].rating;
+        }
+        const average = sum / string.reviews.length;
+        string.rating = average;
+        string.save();
+        res.json(updatedReview);        
+      })
     })
     .catch((error) => {
       res.json({ error });
@@ -44,6 +68,12 @@ router.delete('/:reviewId', middleware.checkUserReview, (req, res) => {
     .then((string) => {
       const index = string.reviews.findIndex(review => review._id == req.params.reviewId);
       const review = string.reviews.splice(index, 1)[0];
+      let sum = 0;
+      for(let i = 0; i < string.reviews.length; i++){
+        sum += string.reviews[i].rating;
+      }
+      const average = sum / string.reviews.length;
+      string.rating = average;
       string.save()
         .then(() => {
           review.remove()
