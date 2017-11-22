@@ -5,9 +5,9 @@ const Review = require('../models/reviewModel');
 const middleware = require('../middleware');
 
 router.post('/', middleware.isLoggedIn, (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, manufacturer, coreMaterial, outerMaterial, tonalTraits } = req.body;
   const author = req.user;
-  const newString = new StringModel({title, content, author});
+  const newString = new StringModel({title, content, manufacturer, coreMaterial, outerMaterial, tonalTraits, author});
   newString.save()
     .then((string) => {
       res.json(string)
@@ -47,8 +47,8 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', middleware.checkUserString, (req, res) => { 
   const { id } = req.params;  
-  const { title, content } = req.body;  
-  StringModel.findByIdAndUpdate(id, {$set: {title, content}}, {new:true})
+  const { title, content, manufacturer, coreMaterial, outerMaterial, tonalTraits } = req.body;
+  StringModel.findByIdAndUpdate(id, {$set: {title, content, manufacturer, coreMaterial, outerMaterial, tonalTraits}}, {new:true})
     .exec()
     .then((string) => {
       res.json(string)

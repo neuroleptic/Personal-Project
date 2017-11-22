@@ -57,8 +57,13 @@ class StringDetail extends Component {
     if(this.props.selectedString && this.props.selectedString.author){
       return (
         <div>
-          <p>{this.props.selectedString.title}</p>
-          <p>{this.props.selectedString.content}</p>
+          <p>Title: {this.props.selectedString.title}</p>
+          <p>Content: {this.props.selectedString.content}</p>
+          <p>Manufacturer: {this.props.selectedString.manufacturer}</p>
+          <p>Core material: {this.props.selectedString.coreMaterial}</p>
+          <p>Outer material: {this.props.selectedString.outerMaterial}</p>
+          <p>Tonal traits: {this.props.selectedString.tonalTraits}</p>
+
           {this.props.username === this.props.selectedString.author.username && <Link to={`/strings/${this.props.selectedString._id}/edit`}>
             Edit String
           </Link>}
