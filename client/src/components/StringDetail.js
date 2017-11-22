@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getString } from '../actions';
-import { addReview } from '../actions';
-import { deleteString } from '../actions';
-import { deleteReview } from '../actions';
-
+import { getString, deleteString, deleteReview } from '../actions';
 import { Link } from 'react-router-dom';
 
 class StringDetail extends Component {
   constructor() {
     super();
 
-    this.state = {
-      text: ''
-    };
-
-    this.handleChangeText = this.handleChangeText.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDeleteString = this.handleDeleteString.bind(this);
     
   }
@@ -27,20 +17,6 @@ class StringDetail extends Component {
 
   componentDidUpdate() {
     this.props.getString(this.props.match.params.id);    
-  }
-
-  handleChangeText = (e) => {
-    this.setState({
-      text: e.target.value
-    });
-  };
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.addReview(this.props.match.params.id, this.state);
-    this.setState({
-      text: ''
-    });
   }
 
   handleDeleteString(event) {
@@ -68,9 +44,8 @@ class StringDetail extends Component {
             Edit String
           </Link>}
 
-
           {this.props.username === this.props.selectedString.author.username &&  <form onSubmit={this.handleDeleteString}>
-              <input type='submit' value='Delete'></input>
+              <input type='submit' value='Delete String'></input>
             </form> }
 
           <p>By: {this.props.selectedString.author.username}</p>
@@ -93,11 +68,10 @@ class StringDetail extends Component {
             )
           })}
           {this.props.authenticated && <div>
-            <p> Add a review </p>
-            <form onSubmit={this.handleSubmit}>
-              <input value={this.state.text} onChange={this.handleChangeText} type='text' placeholder="Enter text"></input>
-              <input type='submit' value='Submit'></input>
-            </form>           
+            <Link to={`/strings/${this.props.selectedString._id}/reviews/new`}>
+                Add Review
+            </Link>
+          
           </div>}
         </div>
       );
@@ -115,4 +89,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getString, addReview, deleteString, deleteReview })(StringDetail);
+export default connect(mapStateToProps, { getString, deleteString, deleteReview })(StringDetail);

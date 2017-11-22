@@ -107,7 +107,7 @@ export const getString = (id) => {
   };
 };
 
-export const addReview = (id, reviewData) => {
+export const addReview = (id, reviewData, history) => {
   return (dispatch) => {
     axios
       .post(`${ROOT_URL}/strings/${id}/reviews`, reviewData)
@@ -116,7 +116,8 @@ export const addReview = (id, reviewData) => {
           type: ADD_REVIEW,
           payload: data
         });
-      })
+        history.push(`/strings/${id}`);                
+      });
   };
 };
 
@@ -144,7 +145,7 @@ export const editString = (id, stringData, history) => {
           payload: data
         });
         history.push(`/strings/${id}`);        
-      })
+      });
   };
 };
 
@@ -157,7 +158,7 @@ export const deleteString = (id, history) => {
           type: DELETE_STRING
         });
         history.push('/strings');        
-      })
+      });
   };
 };
 
