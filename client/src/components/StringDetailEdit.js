@@ -21,6 +21,18 @@ class StringDetailEdit extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      title: this.props.selectedString.title,
+      content: this.props.selectedString.content,
+      imageURL: this.props.selectedString.imageURL,
+      manufacturer: this.props.selectedString.manufacturer,
+      coreMaterial: this.props.selectedString.coreMaterial,
+      outerMaterial: this.props.selectedString.outerMaterial,
+      tonalTraits: this.props.selectedString.tonalTraits
+    });
+  }
+
   handleChangeTitle = (e) => {
     this.setState({
       title: e.target.value
@@ -108,4 +120,10 @@ class StringDetailEdit extends Component {
   }
 }
 
-export default connect(null, { editString })(StringDetailEdit);
+const mapStateToProps = (state) => {
+  return {
+    selectedString: state.selectedString
+  };
+};
+
+export default connect(mapStateToProps, { editString })(StringDetailEdit);

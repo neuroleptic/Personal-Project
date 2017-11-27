@@ -16,7 +16,7 @@ export const ADD_STRING = 'ADD_STRING';
 export const EDIT_STRING = 'EDIT_STRING';
 export const DELETE_STRING = 'DELETE_STRING';
 
-
+export const GET_REVIEW = 'GET_REVIEW';
 export const ADD_REVIEW = 'ADD_REVIEW';
 export const EDIT_REVIEW = 'EDIT_REVIEW';
 export const DELETE_REVIEW = 'DELETE_REVIEW';
@@ -107,20 +107,6 @@ export const getString = (id) => {
   };
 };
 
-export const addReview = (id, reviewData, history) => {
-  return (dispatch) => {
-    axios
-      .post(`${ROOT_URL}/strings/${id}/reviews`, reviewData)
-      .then((data) => {
-        dispatch({
-          type: ADD_REVIEW,
-          payload: data
-        });
-        history.push(`/strings/${id}`);                
-      });
-  };
-};
-
 export const addString = (stringData, history) => {
   return (dispatch) => {
     axios
@@ -159,6 +145,34 @@ export const deleteString = (id, history) => {
         });
         history.push('/strings');        
       });
+  };
+};
+
+export const addReview = (id, reviewData, history) => {
+  return (dispatch) => {
+    axios
+      .post(`${ROOT_URL}/strings/${id}/reviews`, reviewData)
+      .then((data) => {
+        dispatch({
+          type: ADD_REVIEW,
+          payload: data
+        });
+        history.push(`/strings/${id}`);                
+      });
+  };
+};
+
+export const getReview = (id, reviewId) => {
+  return (dispatch) => {
+    axios
+      .get(`${ROOT_URL}/strings/${id}/reviews/${reviewId}`)
+      .then((data) => {
+        console.log(data);
+        dispatch({
+          type: GET_REVIEW,
+          payload: data
+        });
+      })
   };
 };
 
