@@ -3,7 +3,6 @@ import { register } from '../actions';
 import { connect } from 'react-redux';
 
 class Register extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -41,13 +40,24 @@ class Register extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.renderAlert()}
-        <input value={this.state.username} onChange={this.handleChangeUsername} type='text' placeholder="Enter username"></input>
-        <input value={this.state.password} onChange={this.handleChangePassword} type='password' placeholder="Enter password"></input>
-        <input value={this.state.confirmPassword} onChange={this.handleChangeConfirmPassword} type='password' placeholder="Confirm password"></input>
-        <input type='submit' value='Submit'></input>
-      </form>
+      <div className="container">       
+        <form onSubmit={this.handleSubmit}>
+          {this.renderAlert()}
+          <div className="form-group">
+            <label for='username'>Username</label>
+            <input value={this.state.username} onChange={this.handleChangeUsername} id='username' className="form-control" type='text' placeholder="Enter username"></input>
+          </div>
+          <div className="form-group">
+            <label for='password'>Password</label>
+            <input value={this.state.password} onChange={this.handleChangePassword} id='password' className="form-control" type='password' placeholder="Enter password"></input>
+          </div>
+          <div className="form-group">
+            <label for='confirmPassword'>Confirm Password</label>
+            <input value={this.state.confirmPassword} onChange={this.handleChangeConfirmPassword} id='confirmPassword' className="form-control" type='password' placeholder="Confirm password"></input>
+          </div>
+          <input type='submit' value='Submit' className="btn btn-primary"></input>
+        </form>
+      </div>
     );
   }
 }

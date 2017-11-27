@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import LogIn from './components/LogIn';
 import LogOut from './components/LogOut';
 import Register from './components/Register';

@@ -35,12 +35,21 @@ class LogIn extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.renderAlert()}
-        <input value={this.state.username} onChange={this.handleChangeUsername} type='text' placeholder="Enter username"></input>
-        <input value={this.state.password} onChange={this.handleChangePassword} type='password' placeholder="Enter password"></input>
-        <input type='submit' value='Submit'></input>
-      </form>
+      <div className="container"> 
+        <h1 style={{textAlign: 'center'}}>Log In</h1>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderAlert()}
+          <div className="form-group">
+            <label for='username'>Username</label>
+            <input value={this.state.username} onChange={this.handleChangeUsername} id='username' className="form-control" type='text' placeholder="Enter username"></input>
+          </div>
+          <div className="form-group"> 
+            <label for='password'>Password</label>
+            <input value={this.state.password} onChange={this.handleChangePassword} id='password' className="form-control" type='password' placeholder="Enter password"></input>
+          </div>
+          <input type='submit' value='Submit' className="btn btn-primary"></input>
+        </form>
+      </div>
     );
   }
 }
