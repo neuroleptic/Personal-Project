@@ -13,6 +13,10 @@ const StringSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imageURL: {
+    type: String,
+    required: true
+  },
   manufacturer: {
     type: String,
     required: true

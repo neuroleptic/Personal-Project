@@ -9,6 +9,7 @@ class StringDetailEdit extends Component {
     this.state = {
       title: '',
       content: '',
+      imageURL: '',
       manufacturer: '',
       coreMaterial: '',
       outerMaterial: '',
@@ -29,6 +30,12 @@ class StringDetailEdit extends Component {
   handleChangeContent = (e) => {
     this.setState({
       content: e.target.value
+    });
+  };
+
+  handleChangeImageURL = (e) => {
+    this.setState({
+      imageURL: e.target.value
     });
   };
 
@@ -69,6 +76,7 @@ class StringDetailEdit extends Component {
           <form onSubmit={this.handleSubmit}>
             <input value={this.state.title} onChange={this.handleChangeTitle} type='text' placeholder="Enter a tile"></input>
             <input value={this.state.content} onChange={this.handleChangeContent} type='text' placeholder="Enter description"></input>
+            <input value={this.state.imageURL} onChange={this.handleChangeImageURL} type='text' placeholder="Enter image url"></input>  
             <input value={this.state.manufacturer} onChange={this.handleChangeManufacturer} type='text' placeholder="Enter manufacturer"></input>
             <input value={this.state.coreMaterial} onChange={this.handleChangeCoreMaterial} type='text' placeholder="Enter core material"></input>
             <input value={this.state.outerMaterial} onChange={this.handleChangeOuterMaterial} type='text' placeholder="Enter outer material"></input>

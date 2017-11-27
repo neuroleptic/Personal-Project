@@ -14,17 +14,19 @@ class StringsList extends Component {
         {this.props.authenticated && <Link to={`/strings/new`}>
             Add a string
           </Link>}
-        <ul>
+        <div>
           {this.props.strings.map((string, i) => {
             return (
-              <li key={i}>
+              <div key={i}>
+                {string.title}
+                <img src={string.imageURL} />
                 <Link to={`/strings/${string._id}`}>
-                  {string.title}
+                  More Info
                 </Link>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
     );
   }

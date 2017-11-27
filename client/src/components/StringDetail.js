@@ -33,6 +33,7 @@ class StringDetail extends Component {
       return (
         <div>
           <p>Title: {this.props.selectedString.title}</p>
+          <img src={this.props.selectedString.imageURL}/>
           <p>Content: {this.props.selectedString.content}</p>
           <p>Manufacturer: {this.props.selectedString.manufacturer}</p>
           <p>Core material: {this.props.selectedString.coreMaterial}</p>
