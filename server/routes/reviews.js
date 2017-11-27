@@ -40,7 +40,6 @@ router.get('/:reviewId', middleware.checkUserReview, (req, res) => {
   Review.findById(reviewId)
     .exec()
     .then((review) => {
-      console.log(review)
       res.json(review)
     })
     .catch((error) => {
