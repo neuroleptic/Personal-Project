@@ -40,7 +40,8 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="container">       
+      <div className="container">  
+        <h1 style={{textAlign: 'center'}}>Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderAlert()}
           <div className="form-group">

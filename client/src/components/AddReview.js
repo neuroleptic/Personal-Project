@@ -36,18 +36,25 @@ class AddReview extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Add a review</h1>
+      <div className="container">
+        <h1 style={{textAlign: 'center'}}>Add a review</h1>
         <form onSubmit={this.handleSubmit}>
-          <input value={this.state.text} onChange={this.handleChangeText} type='text' placeholder="Enter text"></input>
-          <StarRatings
-            rating={this.state.rating}
-            isSelectable={true}
-            isAggregateRating={false}
-            changeRating={this.changeRating}
-            numOfStars={ 5 }
-          />
-          <input type='submit' value='Submit'></input>
+          <div className="form-group">
+            <label for='content'>Review Text</label>
+            <input value={this.state.text} onChange={this.handleChangeText} id='content' className="form-control" type='text' placeholder="Enter text"></input>
+          </div>
+          <div>
+            <span>Rating: </span>
+            <StarRatings
+              rating={this.state.rating}
+              isSelectable={true}
+              isAggregateRating={false}
+              changeRating={this.changeRating}
+              numOfStars={ 5 }
+              starWidthAndHeight={'25px'}
+            />
+          </div>
+          <input type='submit' value='Submit' className="btn btn-primary"></input>
         </form>  
       </div>
     );

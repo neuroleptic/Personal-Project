@@ -70,20 +70,39 @@ class StringDetailEdit extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Edit string</h1>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <input value={this.state.title} onChange={this.handleChangeTitle} type='text' placeholder="Enter a tile"></input>
-            <input value={this.state.content} onChange={this.handleChangeContent} type='text' placeholder="Enter description"></input>
-            <input value={this.state.imageURL} onChange={this.handleChangeImageURL} type='text' placeholder="Enter image url"></input>  
-            <input value={this.state.manufacturer} onChange={this.handleChangeManufacturer} type='text' placeholder="Enter manufacturer"></input>
-            <input value={this.state.coreMaterial} onChange={this.handleChangeCoreMaterial} type='text' placeholder="Enter core material"></input>
-            <input value={this.state.outerMaterial} onChange={this.handleChangeOuterMaterial} type='text' placeholder="Enter outer material"></input>
-            <input value={this.state.tonalTraits} onChange={this.handleChangeTonalTraits} type='text' placeholder="Enter tonal traits"></input>
-            <input type='submit' value='Submit'></input>
-          </form>           
-        </div>
+      <div className="container">
+        <h1 style={{textAlign: 'center'}}>Edit string</h1>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label for='title'>Title</label>
+            <input value={this.state.title} onChange={this.handleChangeTitle} id='title' className="form-control" type='text' placeholder="Enter a tile"></input>
+          </div>
+          <div className="form-group">
+            <label for='content'>Description</label>
+            <input value={this.state.content} onChange={this.handleChangeContent} id='content' className="form-control" type='text' placeholder="Enter description"></input>
+          </div>
+          <div className="form-group">
+            <label for='imageURL'>Image URL</label>
+            <input value={this.state.imageURL} onChange={this.handleChangeImageURL} id='imageURL' className="form-control" type='text' placeholder="Enter image url"></input>  
+          </div>
+          <div className="form-group">
+            <label for='manufacturer'>Manufacturer</label>
+            <input value={this.state.manufacturer} onChange={this.handleChangeManufacturer} id='manufacturer' className="form-control" type='text' placeholder="Enter manufacturer"></input>
+          </div>
+          <div className="form-group">
+            <label for='coreMaterial'>Core Material</label>
+            <input value={this.state.coreMaterial} onChange={this.handleChangeCoreMaterial} id='coreMaterial' className="form-control" type='text' placeholder="Enter core material"></input>
+          </div>
+          <div className="form-group">
+            <label for='outerMaterial'>Outer Material</label>
+            <input value={this.state.outerMaterial} onChange={this.handleChangeOuterMaterial} id='outerMaterial' className="form-control" type='text' placeholder="Enter outer material"></input>
+          </div>
+          <div className="form-group">
+            <label for='tonalTraits'>Tonal Traits</label>
+            <input value={this.state.tonalTraits} onChange={this.handleChangeTonalTraits} id='tonalTraits' className="form-control" type='text' placeholder="Enter tonal traits"></input>
+          </div>
+          <input type='submit' value='Submit' className="btn btn-primary"></input>
+        </form>           
       </div>
     )
   }

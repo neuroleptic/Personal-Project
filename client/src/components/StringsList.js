@@ -10,11 +10,12 @@ class StringsList extends Component {
 
   render() {
     return (
-      <div className="container">
-        {this.props.authenticated && <Link to={`/strings/new`}>
+      <div className="container text-center">
+        <h1>Discover the ideal violin string today</h1>
+        {this.props.authenticated && <Link to={`/strings/new`} className="btn btn-primary">
             Add a string
           </Link>}
-        <div className="row text-center" style={{display: 'flex', flexWrap: 'wrap'}}>
+        <div className="row " style={{display: 'flex', flexWrap: 'wrap'}}>
           {this.props.strings.map((string, i) => {
             return (
               
