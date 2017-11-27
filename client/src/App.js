@@ -10,13 +10,14 @@ import StringDetailEdit from './components/StringDetailEdit';
 import EditReview from './components/EditReview';
 import AddReview from './components/AddReview';
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect  } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Switch>
+          <Route exact path="/" render={() => (<Redirect to="/strings"/> )}/>
           <Route exact path="/strings" component={ StringsList }/>
           <Route exact path="/strings/new" component={ AddString }/>
           <Route exact path="/strings/:id" component={ StringDetail }/>
