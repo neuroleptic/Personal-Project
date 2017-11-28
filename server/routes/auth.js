@@ -11,7 +11,7 @@ router.post('/register', (req, res) => {
       res.json({ err });
     }
     passport.authenticate("local")(req, res, function(){
-       res.json({ user });
+       res.send(req.user);
     });
   });
 });
