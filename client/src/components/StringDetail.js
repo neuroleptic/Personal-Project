@@ -72,7 +72,7 @@ class StringDetail extends Component {
                   </p>      
                   <p> By: {review.author.username } </p>
                   {this.props.username === review.author.username&& <div>
-                      <Link to={`/strings/${this.props.selectedString._id}/reviews/${review._id}`} style={{display: 'inline-block'}} className="btn btn-primary">
+                      <Link to={{ pathname: `/strings/${this.props.selectedString._id}/reviews/${review._id}`, state: {text: review.text, rating: review.rating}}} style={{display: 'inline-block'}} className="btn btn-primary">
                           Edit Review
                       </Link>
                       <form onSubmit={this.handleDeleteReview.bind(this, review._id)} style={{display: 'inline-block'}}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editReview, getReview } from '../actions';
+import { editReview } from '../actions';
 import StarRatings from 'react-star-ratings';
 
 class EditReview extends Component {
@@ -17,7 +17,10 @@ class EditReview extends Component {
   }
 
   componentDidMount() {
-    this.props.getReview(this.props.match.params.id, this.props.match.params.reviewId);
+    this.setState({
+      text: this.props.location.state.text,
+      rating: this.props.location.state.rating
+    });
   }
 
   handleChangeText = (e) => {
@@ -38,41 +41,32 @@ class EditReview extends Component {
   }
 
   render() {
-    if(this.props.selectedReview) {
-      return (
-        <div className="container">
-          <h1 style={{textAlign: 'center'}}>Edit review</h1>
-          <div>
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label for='content'>Review Text</label>
-                <input value={this.state.text ? this.state.text: this.props.selectedReview.text} onChange={this.handleChangeText} id='content' className="form-control" type='text' placeholder="Enter review"></input>
-              </div>
-              <div>
-                <span>Rating: </span>
-                <StarRatings
-                  rating={this.state.rating ? this.state.rating: this.props.selectedReview.rating}
-                  isSelectable={true}
-                  isAggregateRating={false}
-                  changeRating={this.changeRating}
-                  numOfStars={ 5 }
-                  starWidthAndHeight={'25px'}
-                />
-              </div>
-              <input type='submit' value='Submit' className="btn btn-primary"></input>
-            </form>           
-          </div>
+    return (
+      <div className="container">
+        <h1 style={{textAlign: 'center'}}>Edit review</h1>
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label for='content'>Review Text</label>
+              <input value={this.state.text} onChange={this.handleChangeText} id='content' className="form-control" type='text' placeholder="Enter review"></input>
+            </div>
+            <div>
+              <span>Rating: </span>
+              <StarRatings
+                rating={this.state.rating}
+                isSelectable={true}
+                isAggregateRating={false}
+                changeRating={this.changeRating}
+                numOfStars={ 5 }
+                starWidthAndHeight={'25px'}
+              />
+            </div>
+            <input type='submit' value='Submit' className="btn btn-primary"></input>
+          </form>           
         </div>
-      )
-    } else {
-      return null;
-    }
-  }
+      </div>
+    )
+  } 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    selectedReview: state.selectedReview
-  };
-};
-export default connect(mapStateToProps, { editReview, getReview })(EditReview);
+export default connect(null, { editReview })(EditReview);

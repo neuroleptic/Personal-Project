@@ -35,18 +35,6 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
   });   
 });
 
-router.get('/:reviewId', middleware.checkUserReview, (req, res) => {
-  const { id, reviewId } = req.params; 
-  Review.findById(reviewId)
-    .exec()
-    .then((review) => {
-      res.json(review)
-    })
-    .catch((error) => {
-      res.json({ error });
-    });
-});
-
 router.put('/:reviewId', middleware.checkUserReview, (req, res) => {
   const { id, reviewId } = req.params;
   const { text, rating  } = req.body;
