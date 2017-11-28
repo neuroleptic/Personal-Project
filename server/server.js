@@ -29,11 +29,11 @@ const corsOptions = {
 
 server.use(cors(corsOptions));
 
-mongoose.Promise = global.Promise;
-const connect = mongoose.connect(
-  'mongodb://localhost:27017/project',
-  { useMongoClient: true }
-);
+// mongoose.Promise = global.Promise;
+// const connect = mongoose.connect(
+//   'mongodb://localhost:27017/project',
+//   { useMongoClient: true }
+// );
 
 server.use(require('express-session')({
   secret: '0dhjzFkz91aNOp1xqOmx',
@@ -51,9 +51,11 @@ server.use('/', authRoutes);
 server.use('/strings', stringsRoutes);
 server.use('/strings/:id/reviews', reviewsRoutes);
 
-connect.then(() => {
-  server.listen(5000);
-  console.log('Server Listening on port 5000');
-}, (error) => {
-  console.log(error);
-});
+// connect.then(() => {
+//   server.listen(5000);
+//   console.log('Server Listening on port 5000');
+// }, (error) => {
+//   console.log(error);
+// });
+
+module.exports = server;
