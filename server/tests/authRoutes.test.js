@@ -20,6 +20,7 @@ describe('/register', () => {
       .post('/register')
       .send(user)
       .end((err, res) => {
+        console.log(res);
         expect(res.status).to.equal(200);
         expect(res.body.username).to.equal('nick');
         done();
