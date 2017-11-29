@@ -24,7 +24,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
           for(let i = 0; i < string.reviews.length; i++){
             sum += string.reviews[i].rating;
           }
-          const average = sum / string.reviews.length;
+          const average = string.reviews.length != 0 ? sum / string.reviews.length : 0;
           string.rating = average;
           string.save();
           res.json(string);
@@ -49,10 +49,10 @@ router.put('/:reviewId', middleware.checkUserReview, (req, res) => {
         for(let i = 0; i < string.reviews.length; i++){
           sum += string.reviews[i].rating;
         }
-        const average = sum / string.reviews.length;
+        const average = string.reviews.length != 0 ? sum / string.reviews.length : 0;
         string.rating = average;
         string.save();
-        res.json(updatedReview);        
+        res.json(string);        
       })
     })
     .catch((error) => {
@@ -72,15 +72,18 @@ router.delete('/:reviewId', middleware.checkUserReview, (req, res) => {
       for(let i = 0; i < string.reviews.length; i++){
         sum += string.reviews[i].rating;
       }
-      const average = sum / string.reviews.length;
+      const average = string.reviews.length != 0 ? sum / string.reviews.length : 0;
       string.rating = average;
       string.save()
         .then(() => {
           review.remove()
             .then(() => {
-              res.json(review);
+              res.json(string);
             })
         })
+        .catch((error) => {
+          res.json({ error });
+        }); 
     })
     .catch((error) => {
       res.json({ error });

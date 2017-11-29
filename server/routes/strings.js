@@ -17,7 +17,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
   });
 });
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { 
   StringModel.find()
     .exec() 
     .then((strings) => {
