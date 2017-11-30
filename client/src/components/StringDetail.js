@@ -4,7 +4,7 @@ import { getString, deleteString, deleteReview } from '../actions';
 import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 
-class StringDetail extends Component {
+export class StringDetail extends Component {
   constructor() {
     super();
     this.handleDeleteString = this.handleDeleteString.bind(this);
@@ -71,12 +71,12 @@ class StringDetail extends Component {
                     /> 
                   </p>      
                   <p> By: {review.author.username } </p>
-                  {this.props.username === review.author.username&& <div>
+                  {this.props.username === review.author.username && <div>
                       <Link to={{ pathname: `/strings/${this.props.selectedString._id}/reviews/${review._id}`, state: {text: review.text, rating: review.rating}}} style={{display: 'inline-block'}} className="btn btn-primary">
                           Edit Review
                       </Link>
                       <form onSubmit={this.handleDeleteReview.bind(this, review._id)} style={{display: 'inline-block'}}>
-                        <input type='submit' value='Delete Reivew' className="btn btn-danger"></input>
+                        <input type='submit' value='Delete Review' className="btn btn-danger"></input>
                       </form>
                     </div>               
                     }                  

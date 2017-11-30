@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { login } from '../actions';
 import { connect } from 'react-redux';
 
-class LogIn extends Component {
+export class LogIn extends Component {
 
   constructor() {
     super();
@@ -31,7 +31,7 @@ class LogIn extends Component {
   renderAlert() {
     if (!this.props.error) return null;
     return <h3>{this.props.error}</h3>;
-  } 
+  }
 
   render() {
     return (

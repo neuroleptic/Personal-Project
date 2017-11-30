@@ -3,7 +3,7 @@ import { addReview } from '../actions';
 import { connect } from 'react-redux';
 import StarRatings from 'react-star-ratings';
 
-class AddReview extends Component {
+export class AddReview extends Component {
   constructor() {
     super();
 

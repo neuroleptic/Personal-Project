@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { register } from '../actions';
 import { connect } from 'react-redux';
 
-class Register extends Component {
+export class Register extends Component {
   constructor() {
     super();
     this.state = {

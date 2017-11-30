@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addString } from '../actions';
 
-class AddString extends Component {
+export class AddString extends Component {
   constructor() {
     super();
 
