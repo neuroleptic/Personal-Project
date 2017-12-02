@@ -33,7 +33,7 @@ export const register = ({username, password, confirmPassword}, history) => {
       dispatch(authError('Passwords do not match'));
       return;
     }
-    axios
+    return axios
       .post(`${ROOT_URL}/register`, { username, password })
       .then((data) => {
         dispatch({
@@ -50,7 +50,7 @@ export const register = ({username, password, confirmPassword}, history) => {
 
 export const login = ({username, password}, history) => {
   return (dispatch) => {
-    axios
+    return axios
       .post(`${ROOT_URL}/login`, { username, password })
       .then((data) => {
         dispatch({
@@ -67,7 +67,7 @@ export const login = ({username, password}, history) => {
 
 export const logout = () => {  
   return (dispatch) => {
-    axios
+    return axios
       .get(`${ROOT_URL}/logout`)
       .then(() => {
         dispatch({
@@ -82,7 +82,7 @@ export const logout = () => {
 
 export const getStrings = () => {
   return (dispatch) => {
-    axios
+    return axios
       .get(`${ROOT_URL}/strings`)
       .then((data) => {
         dispatch({
@@ -95,7 +95,7 @@ export const getStrings = () => {
 
 export const getString = (id) => {
   return (dispatch) => {
-    axios
+    return axios
       .get(`${ROOT_URL}/strings/${id}`)
       .then((data) => {
         dispatch({
@@ -108,7 +108,7 @@ export const getString = (id) => {
 
 export const addString = (stringData, history) => {
   return (dispatch) => {
-    axios
+    return axios
       .post(`${ROOT_URL}/strings/`, stringData)
       .then((data) => {
         dispatch({
@@ -122,7 +122,7 @@ export const addString = (stringData, history) => {
 
 export const editString = (id, stringData, history) => {
   return (dispatch) => {
-    axios
+    return axios
       .put(`${ROOT_URL}/strings/${id}`, stringData)
       .then((data) => {
         dispatch({
